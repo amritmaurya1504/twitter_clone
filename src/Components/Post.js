@@ -1,10 +1,12 @@
-import React , { forwardRef } from 'react'
-import { Avatar , IconButton } from "@material-ui/core"
+import React, { forwardRef } from 'react'
+import { Avatar, IconButton  } from "@material-ui/core"
+import Tooltip from '@material-ui/core/Tooltip';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PublishIcon from '@material-ui/icons/Publish';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import "./css/Post.css"
 const Post = forwardRef(({
     displayName,
@@ -14,7 +16,7 @@ const Post = forwardRef(({
     image,
     avatar,
     time
-} , ref) => {
+}, ref) => {
     return (
         <div className="post" ref={ref}>
             <div className="post_avatar">
@@ -30,20 +32,26 @@ const Post = forwardRef(({
                         <p>{text}</p>
                     </div>
                 </div>
-                <img src={image} alt=""/>
+                <img src={image} alt="" />
                 <div className="post_footer">
-                <IconButton>
-                   <ChatBubbleOutlineIcon fontSize="small" className="post_icons" />
-                </IconButton>
-                <IconButton>
-                   <RepeatIcon fontSize="small" className="post_icons" />
-                </IconButton>
-                <IconButton>
-                   <FavoriteBorderIcon fontSize="small" className="post_icons" />
-                </IconButton>
-                <IconButton>
-                   <PublishIcon fontSize="small" className="post_icons" />
-                </IconButton>
+                    <IconButton>
+                        <ChatBubbleOutlineIcon fontSize="small" className="post_icons" />
+                    </IconButton>
+                    <IconButton>
+                        <RepeatIcon fontSize="small" className="post_icons" />
+                    </IconButton>
+                    <IconButton>
+                        <FavoriteBorderIcon fontSize="small" className="post_icons" />
+                    </IconButton>
+                    <IconButton>
+                        <PublishIcon fontSize="small" className="post_icons" />
+                    </IconButton>
+                    <Tooltip title="Delete">
+                        <IconButton>
+                            <DeleteForeverIcon fontSize="small" className="post_icons" />
+                        </IconButton>
+                    </Tooltip>
+
                 </div>
             </div>
         </div>

@@ -13,18 +13,21 @@ const TweetBox = () => {
 
     const sendTweet = (e) => {
         e.preventDefault();
-        db.collection('posts').add({
-            displayName : "Amrit Raj Maurya",
-            username : "rajamritmaurya.1",
-            verified : true,
-            text : tweetMsg,
-            image : tweetImage,
-            avatar : "https://avatars.githubusercontent.com/amritmaurya1504",
-            time: new Date().toLocaleString()
-        })
-        setTweetMsg("");
-        setTweetImage("");
-
+        if (!tweetMsg) {
+            alert("Please fill tweet field first")
+        } else {
+            db.collection('posts').add({
+                displayName: "Amrit Raj Maurya",
+                username: "rajamritmaurya.1",
+                verified: true,
+                text: tweetMsg,
+                image: tweetImage,
+                avatar: "https://avatars.githubusercontent.com/amritmaurya1504",
+                time: new Date().toLocaleString()
+            })
+            setTweetMsg("");
+            setTweetImage("");
+        }
     }
 
     return (
