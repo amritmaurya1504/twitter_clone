@@ -5,6 +5,7 @@ import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import PollIcon from '@material-ui/icons/Poll';
+import firebase from "firebase"
 import db from "./firebase";
 const TweetBox = () => {
 
@@ -13,9 +14,6 @@ const TweetBox = () => {
 
     const sendTweet = (e) => {
         e.preventDefault();
-        if (!tweetMsg) {
-            alert("Please fill tweet field first")
-        } else {
             db.collection('posts').add({
                 displayName: "Amrit Raj Maurya",
                 username: "rajamritmaurya.1",
@@ -23,12 +21,17 @@ const TweetBox = () => {
                 text: tweetMsg,
                 image: tweetImage,
                 avatar: "https://avatars.githubusercontent.com/amritmaurya1504",
-                time: new Date().toLocaleString()
+                time: new Date().toLocaleString(),
+                timestamp : firebase.firestore.FieldValue.serverTimestamp()
             })
             setTweetMsg("");
             setTweetImage("");
-        }
+        
     }
+
+    // const deleteDocumnet = () =>{
+    //       db.collection('posts').doc(id).delete()
+    // }
 
     return (
         <div className="tweetbox">
@@ -51,7 +54,7 @@ const TweetBox = () => {
                     <InsertEmoticonIcon className="icons" />
                     <ScheduleIcon className="icons" />
                     <PollIcon className="icons" />
-                    <Button className="tweetbox_button" onClick={sendTweet}>Tweet</Button>
+                    <Button disabled={!tweetMsg} className="tweetbox_button" onClick={sendTweet}>Tweet</Button>
                 </div>
             </form>
         </div>

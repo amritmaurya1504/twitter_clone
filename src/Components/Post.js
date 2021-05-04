@@ -34,18 +34,26 @@ const Post = forwardRef(({
                 </div>
                 <img src={image} alt="" />
                 <div className="post_footer">
+                <Tooltip title="Reply">
                     <IconButton>
                         <ChatBubbleOutlineIcon fontSize="small" className="post_icons" />
                     </IconButton>
+                </Tooltip>
+                <Tooltip title="Retweet">
                     <IconButton>
                         <RepeatIcon fontSize="small" className="post_icons" />
                     </IconButton>
+                </Tooltip>
+                <Tooltip title="Like">
                     <IconButton>
                         <FavoriteBorderIcon fontSize="small" className="post_icons" />
                     </IconButton>
+                </Tooltip>
+                <Tooltip title="Rank">
                     <IconButton>
                         <PublishIcon fontSize="small" className="post_icons" />
                     </IconButton>
+                </Tooltip>
                     <Tooltip title="Delete">
                         <IconButton>
                             <DeleteForeverIcon fontSize="small" className="post_icons" />
