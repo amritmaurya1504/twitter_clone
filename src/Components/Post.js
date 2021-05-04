@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import { Avatar, IconButton  } from "@material-ui/core"
+import firebase from "firebase"
+import { Avatar, IconButton } from "@material-ui/core"
 import Tooltip from '@material-ui/core/Tooltip';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
@@ -15,8 +16,16 @@ const Post = forwardRef(({
     text,
     image,
     avatar,
-    time
+    time,
+    post
 }, ref) => {
+
+
+    const deleteDocumnet = () => {
+        const db = firebase.firestore()
+        db.collection('posts').doc(post.id).delete()
+    }
+
     return (
         <div className="post" ref={ref}>
             <div className="post_avatar">
@@ -34,29 +43,29 @@ const Post = forwardRef(({
                 </div>
                 <img src={image} alt="" />
                 <div className="post_footer">
-                <Tooltip title="Reply">
-                    <IconButton>
-                        <ChatBubbleOutlineIcon fontSize="small" className="post_icons" />
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Retweet">
-                    <IconButton>
-                        <RepeatIcon fontSize="small" className="post_icons" />
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Like">
-                    <IconButton>
-                        <FavoriteBorderIcon fontSize="small" className="post_icons" />
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Rank">
-                    <IconButton>
-                        <PublishIcon fontSize="small" className="post_icons" />
-                    </IconButton>
-                </Tooltip>
+                    <Tooltip title="Reply">
+                        <IconButton>
+                            <ChatBubbleOutlineIcon fontSize="small" className="post_icons" />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Retweet">
+                        <IconButton>
+                            <RepeatIcon fontSize="small" className="post_icons" />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Like">
+                        <IconButton>
+                            <FavoriteBorderIcon fontSize="small" className="post_icons" />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Rank">
+                        <IconButton>
+                            <PublishIcon fontSize="small" className="post_icons" />
+                        </IconButton>
+                    </Tooltip>
                     <Tooltip title="Delete">
                         <IconButton>
-                            <DeleteForeverIcon fontSize="small" className="post_icons" />
+                            <DeleteForeverIcon onClick={deleteDocumnet} fontSize="small" className="post_icons" />
                         </IconButton>
                     </Tooltip>
 

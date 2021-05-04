@@ -15,24 +15,19 @@ const TweetBox = () => {
     const sendTweet = (e) => {
         e.preventDefault();
             db.collection('posts').add({
-                displayName: "Amrit Raj Maurya",
-                username: "rajamritmaurya.1",
-                verified: true,
-                text: tweetMsg,
-                image: tweetImage,
-                avatar: "https://avatars.githubusercontent.com/amritmaurya1504",
-                time: new Date().toLocaleString(),
-                timestamp : firebase.firestore.FieldValue.serverTimestamp()
+                    displayName: "Amrit Raj Maurya",
+                    username: "rajamritmaurya.1",
+                    verified: true,
+                    text: tweetMsg,
+                    image: tweetImage,
+                    avatar: "https://avatars.githubusercontent.com/amritmaurya1504",
+                    time: new Date().toLocaleString(),
+                    timestamp : firebase.firestore.FieldValue.serverTimestamp()
             })
             setTweetMsg("");
             setTweetImage("");
         
     }
-
-    // const deleteDocumnet = () =>{
-    //       db.collection('posts').doc(id).delete()
-    // }
-
     return (
         <div className="tweetbox">
             <form>
