@@ -19,8 +19,8 @@
     margin-bottom: 10px;
     cursor: pointer;
 }
-.post_icons{
-    outline: none !important;
+.delete{
+    color: var(--red-color);
 }
 .post_Badge{
     font-size: 17px !important;
