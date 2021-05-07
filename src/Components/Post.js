@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from 'react'
 import firebase from "firebase"
-import { Avatar, IconButton , Button } from "@material-ui/core"
+import { Avatar, IconButton, Button } from "@material-ui/core"
 import Tooltip from '@material-ui/core/Tooltip';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
@@ -10,6 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import "./css/Post.css"
 import Modal from "react-modal";
+import TwitterIcon from '@material-ui/icons/Twitter';
 Modal.setAppElement("#root");
 const Post = forwardRef(({
     displayName,
@@ -21,8 +22,8 @@ const Post = forwardRef(({
     time,
     post
 }, ref) => {
-    const[modal , setModal] = useState(false)
-    const[tweet , setTweet] = useState(post.text)
+    const [modal, setModal] = useState(false)
+    const [tweet, setTweet] = useState(post.text)
 
     const deleteDocumnet = () => {
         const db = firebase.firestore()
@@ -30,7 +31,7 @@ const Post = forwardRef(({
     }
     const onUpdate = () => {
         const db = firebase.firestore()
-        db.collection('posts').doc(post.id).set({...post, text : tweet})
+        db.collection('posts').doc(post.id).set({ ...post, text: tweet ,time : new Date().toLocaleString() })
     }
 
     return (
@@ -105,23 +106,38 @@ const Post = forwardRef(({
                             }
                         }
                     >
-                        <textarea  id="" cols="100" rows="10" value={tweet} onChange={(e) =>{
-                            setTweet(e.target.value);
-                        }} ></textarea>
-                        <br />
-                        <Button className="tweetbox_button" style={{
-                            backgroundColor:"var(--twitter-color)",
-                            color : "var(--twitter-background)",
-                            outline:"none"
-                        }}  onClick={() => {
-                            setModal(false)
-                        }} >Close</Button>
-                        <Button className="tweetbox_button" style={{
-                            backgroundColor:"var(--twitter-color)",
-                            color : "var(--twitter-background)",
-                            marginLeft : "10px",
-                            outline:"none"
-                        }} onClick={onUpdate} >Save Changes</Button>
+                        <div className="modal">
+                        <div className="header">
+                            <TwitterIcon className="sidebar_icon" /> <h3>Update Your Post</h3>
+                        </div>
+                            <textarea id="" cols="100" rows="10" value={tweet} onChange={(e) => {
+                                setTweet(e.target.value);
+                            }} ></textarea>
+
+                            <br />
+                            <div className="btn">
+
+                                <Button className="tweetbox_button" style={{
+                                    backgroundColor: "var(--twitter-color)",
+                                    color: "var(--twitter-background)",
+                                    outline: "none",
+                                    padding:"7px",
+                                    borderRadius: "8px",
+                                    fontWeight:'800'
+                                }} onClick={() => {
+                                    setModal(false)
+                                }} >Close</Button>
+                                <Button className="tweetbox_button" style={{
+                                    backgroundColor: "var(--twitter-color)",
+                                    color: "var(--twitter-background)",
+                                    marginLeft: "10px",
+                                    outline: "none",
+                                    padding:"7px",
+                                    borderRadius: "8px",
+                                    fontWeight:'800'
+                                }} onClick={onUpdate} >Save Changes</Button>
+                            </div>
+                        </div>
                     </Modal>
                 </div>
             </div>

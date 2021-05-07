@@ -47,3 +47,26 @@
     font-size: 13px;
     color: gray;
 }
+.modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal textarea{
+    width: 90%;
+    resize: none;
+    outline-color: var(--twitter-color);
+    border: 1px solid rgb(185, 183, 183);
+}
+.modal .header{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.modal .header h3{
+    margin-left: 10px;
+    font-size: 22px;
+    font-weight: 400;
+    color: grey;
+}
